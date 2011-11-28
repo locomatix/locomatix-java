@@ -1,0 +1,15 @@
+{
+  "ResponseType":"GetAttributes",
+  "Status":"Success",
+  "Result": {
+    "Object":{
+      "Feed":"test",            
+      "ObjectID":"3",
+      "NameValues":{
+        "first_name": "chris",
+        "last_name": "kellogg",
+        "email": "cckellogg@locomatix.com"
+       }
+    }
+  }
+} 

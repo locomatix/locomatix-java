@@ -1,0 +1,17 @@
+{
+  "ResponseType":"GetLocation",
+  "Status":"Success",
+  "Result":{
+    "Location":{
+      "Feed" : "users",
+      "ObjectID": "3",
+      "Longitude": "42.0",
+      "Latitude": "-83.0",
+      "Time": "299299578",
+      "NameValues":{
+        "status": "playing golf",
+        "course": "pilgrams run"
+      }
+    }
+  }
+}

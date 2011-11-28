@@ -1,0 +1,8 @@
+{
+  "ResponseType": "CreateObject",
+  "Status": "Success",
+  "Result":{
+    "Feed": "test",           
+    "ObjectID" : "3"
+  }
+}

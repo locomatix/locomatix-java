@@ -1,0 +1,21 @@
+{
+  "ResponseType":"GetFence", 
+  "Status":"Success",
+  "Result": {
+    "Zone": {
+      "ZoneID": "myzone",
+      "FollowObject": {
+      	"Feed": "users",
+      	"ObjectID": "3"
+      },
+      "Region":{
+        "RegionParams":{"Radius":1000},
+        "RegionType":"Circle"
+      },
+      "Callback":{"CallbackType":"URL","CallbackURL":"http://mycallback.com"},
+      "Predicate":"FROM fromfeed1",
+      "Trigger":"Ingress",
+      "State":"active"
+     }
+   }
+}

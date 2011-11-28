@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="locomatix-java" default="dist" basedir=".">
+  
+  <!-- set global properties for this build -->
+  <property name="src" location="${basedir}/src/main/java"/>
+  <property name="build" location="${basedir}/build"/>
+  <property name="bin" location="${build}/main"/>
+  <property name="dist"  location="${basedir}/dist"/>
+  <property name="lib"  location="${basedir}/third-party"/>
+  <property name="documentation" location="${basedir}/documentation" />
+  <property name="version" value="0.9.0" />
+  <property name="name" value="locomatix-java-sdk-${version}" />
+  <property name="testsrc" location="${basedir}/test/java"/>
+  <property name="testbin" location="${build}/test"/>
+
+  <path id="classpath">
+    <fileset dir="${lib}" includes="*.jar"/>
+  </path>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${bin}"/>
+  </target>
+
+  <target name="compile" depends="init" description="compile the source " >
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${bin}" classpathref="classpath" includeantruntime="false" />
+  </target>
+
+  <target name="dist" depends="compile" description="generate the distribution" >
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}/lib"/>
+    <!-- Put everything in ${bin} into the ${name}.jar file -->
+    <jar jarfile="${dist}/lib/${name}.jar" basedir="${bin}" />
+  </target>
+
+  <target name="javadoc" depends="init" description="generate the javadocs" >
+   	<mkdir dir="${documentation}/javadoc"/>
+	  <javadoc 
+      destdir="${documentation}/javadoc"
+		  author="true"
+		  version="true"
+		  use="true"
+		  windowtitle="Locomatix Java SDK - ${version}" >
+		
+	    <fileset dir="${src}" includes="**/*.java" />
+	  </javadoc>
+  </target>
+	
+  <target name="clean" description="clean up" >
+    <!-- Delete the ${build}, ${dist} and ${documentation} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+    <delete dir="${documentation}"/>
+  </target>
+
+</project>
