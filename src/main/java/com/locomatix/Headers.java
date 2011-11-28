@@ -16,7 +16,7 @@
 package com.locomatix;
 
 /**
- * A class for the Locoamtix API HTTP headers needed with each request.
+ * A class for the Locomatix API HTTP headers needed with each request.
  *
  */
 class Headers {

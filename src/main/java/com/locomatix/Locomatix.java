@@ -896,7 +896,6 @@ public class Locomatix {
       private final LQLQueryBuilder lql = new LQLQueryBuilder();
       private NameValues nameValues = NameValues.create(); 
 				
-      // Should we make zones as default 250 meters?
       public Create(String zoneId, Callback callback, String fromFeed) {
         this.zoneId = zoneId;
       	lql.from(fromFeed);
