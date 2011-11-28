@@ -1,7 +1,0 @@
-{
-  "ResponseType": "CreateFence",
-  "Status":"Success",
-  "Result":{
-    "FenceID" : "myfence"   
-  }
-}
