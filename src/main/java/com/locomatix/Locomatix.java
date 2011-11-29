@@ -74,6 +74,8 @@ public class Locomatix {
   private volatile int executionTime;
   
   public Locomatix(LocomatixCredentials credentials, ClientConfiguration clientConfiguration) {
+    assertParameterNotNull(credentials, "Credentials are null");
+    assertParameterNotNull(clientConfiguration, "ClientConfiguration is null");
     this.credentials = credentials;
     this.clientConfiguration = ClientConfiguration.newInstance(clientConfiguration);
     createHeaders();
@@ -123,11 +125,11 @@ public class Locomatix {
   }
   
   
-  public Feed feeds() {
-    return new Feed();
+  public Feeds feeds() {
+    return new Feeds();
   }
   
-  public final class Feed {
+  public final class Feeds {
     
     public Create create(String feedId) {
       return new Create(feedId);
@@ -221,8 +223,8 @@ public class Locomatix {
     } // end Feed.Delete
     
     
-    public com.locomatix.Locomatix.Feed.List list() {
-      return new com.locomatix.Locomatix.Feed.List();
+    public Locomatix.Feeds.List list() {
+      return new Locomatix.Feeds.List();
     }
     
     public class List extends LocomatixRequest implements PageableRequest {
@@ -578,16 +580,16 @@ public class Locomatix {
   } // Objects
   
   
-  public com.locomatix.Locomatix.Location location(String feedId) {
-    return new com.locomatix.Locomatix.Location(feedId);
+  public Locomatix.Locations location(String feedId) {
+    return new Locomatix.Locations(feedId);
   }
   
   
-  public class Location {
+  public class Locations {
     
     private final String feedId;
     
-    public Location(String feedId) {
+    public Locations(String feedId) {
       this.feedId = feedId;
     }
     
@@ -597,8 +599,7 @@ public class Locomatix {
     }
     
     public Update update(String objectId, Point point, long timestamp) {
-      if (null == point)
-        throw new NullPointerException("Null point");
+      assertParameterNotNull(point, "Point is null");
       return new Update(objectId, point.getLatitude(), point.getLongitude(), timestamp);
     }
     
@@ -657,8 +658,8 @@ public class Locomatix {
     } // end Location.Update
     
     
-    public com.locomatix.Locomatix.Location.Get get(String objectId) {
-      return new com.locomatix.Locomatix.Location.Get(objectId);
+    public Locomatix.Locations.Get get(String objectId) {
+      return new Locomatix.Locations.Get(objectId);
     }
     
     public class Get extends LocomatixRequest {
@@ -868,20 +869,20 @@ public class Locomatix {
   
   //--------------------------------- Zone API --------------------------------------------
   
-  public Locomatix.Zone zones(String objectid, String feedid) {
-    return new Zone(objectid, feedid);
+  public Locomatix.Zones zones(String objectid, String feedid) {
+    return new Zones(objectid, feedid);
   }
     
-  public final class Zone {
+  public final class Zones {
     private final String feedId;
     private final String objectId;
 
-    public Zone(String objectId, String feedId) {
+    public Zones(String objectId, String feedId) {
       this.objectId = objectId;
       this.feedId = feedId;
     }
        
-    public Locomatix.Zone.Create create(String zoneId, Callback callback, String fromFeed) {
+    public Locomatix.Zones.Create create(String zoneId, Callback callback, String fromFeed) {
       return new Create(zoneId, callback, fromFeed);
     }
       
@@ -1095,7 +1096,7 @@ public class Locomatix {
       
       } // end Zone.Get
       
-      public Locomatix.Zone.List list() {
+      public Locomatix.Zones.List list() {
         return new List();
       }
       
@@ -1141,13 +1142,13 @@ public class Locomatix {
   
   //--------------------------------- Fence API --------------------------------------------
     
-  public Fence fences() {
-    return new Fence();
+  public Locomatix.Fences fences() {
+    return new Fences();
   }
       
-  public final class Fence {
+  public final class Fences {
       
-    public Fence() {
+    public Fences() {
       //this(null);
     }
       
@@ -1332,7 +1333,7 @@ public class Locomatix {
       }
     } // end Fence.Get
       
-    public Locomatix.Fence.List list() {
+    public Locomatix.Fences.List list() {
       return new List();
     }
       
