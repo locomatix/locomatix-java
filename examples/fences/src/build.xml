@@ -9,37 +9,37 @@
   <property name="main-class" value="FencesExample"/>
 
   <path id="classpath">
-	  <fileset dir="${lib.dir}" includes="*.jar"/>
-	  <fileset dir="${lx.dir}" includes="*.jar"/>
-	</path>
+    <fileset dir="${lib.dir}" includes="*.jar"/>
+    <fileset dir="${lx.dir}" includes="*.jar"/>
+  </path>
 
   <target name="clean">
     <delete dir="${build.dir}"/>
   </target>
 
   <target name="compile">
-	  <mkdir dir="${classes.dir}"/>
-	  <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" includeantruntime="false"/>
-	</target>
+    <mkdir dir="${classes.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" includeantruntime="false"/>
+  </target>
 
   <target name="run">
-	  <java fork="true" classname="${main-class}">
-		  <classpath>
-			  <path refid="classpath"/>
-			  <path location="${jar.dir}/${ant.project.name}.jar"/>
-			</classpath>
-			<arg value="${callbackurl}" />
-	  </java>
-	</target>  
+    <java fork="true" classname="${main-class}">
+      <classpath>
+        <path refid="classpath"/>
+        <path location="${jar.dir}/${ant.project.name}.jar"/>
+      </classpath>
+      <arg value="${callbackurl}" />
+    </java>
+  </target>  
 
   <target name="jar" depends="compile">
-	  <mkdir dir="${jar.dir}"/>
-	  <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
-		  <manifest>
-			  <attribute name="Main-Class" value="${main-class}"/>
+    <mkdir dir="${jar.dir}"/>
+    <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+      <manifest>
+        <attribute name="Main-Class" value="${main-class}"/>
       </manifest>
-		</jar>
-	</target>
+    </jar>
+  </target>
   
   <target name="main" depends="clean,jar"/>
 </project>
