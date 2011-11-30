@@ -1,0 +1,45 @@
+FencesExample:
+
+This is a simple program demonstrating geo-fences. Basically, the program creates circular geo-fences of 2KM radius around 10 walmart stores in the Bay Area. Then it creates 10 customers and moves them into geo-fence so that the alerts are triggered. The script also contains code for creating polygonal fences around the store and the coordinates of polygons around the stores.
+
+
+Files:
+
+webserver.py --- this script is nothing but a simple python web server that listens on server, port for receiving alerts.
+
+FencesExample.java ---- this scripts creates the store fences and customers and moves customers to stores so that alert will be triggered.
+
+
+Requirements:
+
+This example requires the Locomatix sdk which can be built by running ant from the root sdk directory (locomatix-java).
+
+
+Running the example:
+
+1) Start the webserver.py on a publicly reachable machine.
+   
+   python webserver.py
+   
+   The web server will print: Alerts are being received at <some url>
+   Copy this url.
+
+2) Open FencesExample.java and fill in the following variables:
+   
+   private final String CUSTOMERID = "<enter your locomatix custid>";
+   private final String CUSTOMERKEY = "<enter your locomatix custkey>";
+   private final String SECRETKEY = "<enter your locomatix secretkey>";
+
+   private final String HOST = "<enter host>"; (usually api.locomatix.com)
+
+   Compile the program
+   ant
+   
+   Run the program with the url from the webserver
+   ant -Dcallbackurl="<url from webserver>" run
+
+   Once the program is started you will start seeing alerts in the webserver window. 
+
+
+
+

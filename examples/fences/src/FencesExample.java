@@ -182,7 +182,7 @@ public class FencesExample {
     FencesExample example = new FencesExample();
 
     try {
-      // Start with clean slate - delete fences and objects, if they exist
+      // Start with a clean slate - delete fences and objects, if they exist
       example.deleteFences();
       example.deleteObjects();
       example.deleteFeeds();
@@ -198,7 +198,17 @@ public class FencesExample {
     // Create the customers and move them to close to store to trigger geo-fences
     example.createObjects();
     example.moveObjects();
-    
+
+   
+    try {
+      // Clean up - delete fences, objects and feed, if they exist
+      example.deleteFences();
+      example.deleteObjects();
+      example.deleteFeeds();
+    } catch(LocomatixException le) {
+      // ignore
+    }
+ 
     System.out.println("done.");
   }
 }
