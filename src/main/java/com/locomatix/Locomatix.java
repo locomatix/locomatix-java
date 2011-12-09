@@ -928,6 +928,11 @@ public class Locomatix {
         }
         return this;
       }
+      
+      public Create with(String oid, String ...oids) {
+        lql.with(oid, oids);
+        return this;
+      }
 
       public Create where(String clause) {
         if (null != clause) {
@@ -950,8 +955,8 @@ public class Locomatix {
         request.addParameter("radius", String.valueOf(radius));
         request.addParameter(Parameters.TRIGGER, triggerCondition.toString());
         request.addParameters(callback.getProperties());
-        request.addParameter(Parameters.PREDICATE, lql.toString());
-	    	    
+        request.addParameter(Parameters.PREDICATE, lql.toLql());
+        
         addNameValuesParameters(request, nameValues);
 	    	    
         LocomatixResponse<Void> response = 
@@ -1194,7 +1199,13 @@ public class Locomatix {
         }
         return this;
       }
-	            
+	    
+      public Create with(String oid, String ...oids) {
+        lql.with(oid, oids);
+        return this;
+      }
+      
+      
       public Create where(String clause) {
         if (null != clause) {
           lql.where(clause);
@@ -1219,7 +1230,7 @@ public class Locomatix {
         request.addParameter(Parameters.TRIGGER, triggerCondition.toString());
         request.addParameters(callback.getProperties());
         request.addParameter(Parameters.PREDICATE, lql.toLql());
-	         
+        
         addNameValuesParameters(request, nameValues);
         client.execute(request, new FenceKeyResponseHandler(), errorResponseHandler);
       }
